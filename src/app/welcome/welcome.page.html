@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+<ion-header class="ion-app-login-header">
+  
+  <ion-avatar  class="ion-app-logo">
+    <img alt="RegistrAPP application logo" src="assets/spring-bank-logo-o.png"/>
+  </ion-avatar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  
+  <div class="container">
+    <ion-card>
+      <ion-card-header>
+        
+      </ion-card-header>
+      <ion-card-content>
+        <h2>Bienvenido, {{username}}!</h2>
+        <p>Bienvenido a RegistrAPP.</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+
+  <ion-button class="login-button" (click)="irLogin()"  id="open-loading" expand="block">Cerrar Sesión</ion-button>
+
+  <ion-toast
+    [isOpen]="isToastOpen"
+    message="{{toastMessage}}"
+    [duration]="2000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
+</ion-content>
