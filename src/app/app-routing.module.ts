@@ -1,44 +1,45 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthenticationGuard } from './common/services/authentication.guard';
-import { AuthorizationGuard } from './common/services/authorization.guard';
+import { canActivate } from '../app/canactivate.guard';
+import { CanmatchGuard } from '../app/canmatch.guard';
+import { CanDeactivateGuard } from '../app/candeactivate.guard';
 
 const routes: Routes = [
   {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canMatch: [CanmatchGuard],
+    canActivate: [canActivate]
+  },
+  {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'login',
-    loadChildren: () => import('./account/login/login.module').then(m => m.LoginPageModule)
-  },
-
-  {
-    path: 'profile',
-    loadChildren: () => import('./account/profile/profile.module').then(m => m.ProfilePageModule),
-    canActivate: [AuthenticationGuard, AuthorizationGuard],
-    data: {
-      roles: ['ROLE_USER', 'ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
-    }
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
+   
   },
   {
-    path: 'main-app-menu',
-    loadChildren: () => import('./navigation/main-app-menu/main-app-menu.module').then(m => m.MainAppMenuPageModule),
-    canActivate: [AuthenticationGuard, AuthorizationGuard],
-    data: {
-      roles: ['ROLE_USER', 'ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
-    }
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule),
+    canDeactivate: [CanDeactivateGuard]
   },
   {
-    path: 'update-password',
-    loadChildren: () => import('./account/update-password/update-password.module').then(m => m.UpdatePasswordPageModule)
-  },
-
+path: 'dashboard',
+loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule),
+canActivate: [canActivate],
+canMatch: [CanmatchGuard],
+canDeactivate: [CanDeactivateGuard]
+},
   {
-    path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomePageModule)
-  }
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: '**', loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundPageModule)
+  },
 ];
 
 @NgModule({
@@ -47,4 +48,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

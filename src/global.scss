@@ -9,6 +9,9 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+/* Importar la fuente Playfair Display desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
@@ -25,26 +28,45 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/* CUSTOM SPRINGBANK STYLE*/
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
 
-.app-green-color{
-    color: #48C9B0;
-}
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
 
-.app-blue-color{
-    color: #1A5276;
-}
-.app-green-bg-color{
-    color: #48C9B0;
-}
+/* Global styles */
+ion-header {
+  --background: #007aff; /* Color de fondo de la barra */
+  --color: white; /* Color del texto */
+  text-align: center;
 
-.app-blue-bg-color{
-    color: #1A5276;
-}
-
-ion-loading.custom-loading {
-    --background: #e3edff;
-    --spinner-color: #1c6dff;
-  
-    color: #1c6dff;
+  ion-toolbar {
+    justify-content: center;
+    display: flex;
   }
+
+  ion-title {
+    font-size: 32px; /* Tamaño de la fuente */
+    font-weight: bold; /* Negrita */
+    font-family: 'Playfair Display', serif; /* Fuente elegante Playfair Display */
+    color: #003366; /* Azul sólido (código hexadecimal del color azul oscuro) */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil para resaltar el texto */
+    letter-spacing: 1px; /* Espaciado entre letras */
+  }
+}
+
+body {
+  background: aqua; /* Fondo general */
+  background-size: cover;
+}
+
+ion-content {
+  background: url('assets/img/fondo.jpg') no-repeat center center;
+  background-size: cover;
+  height: 100%;
+}

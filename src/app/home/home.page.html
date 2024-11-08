@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <app-back-button></app-back-button>
+    <ion-title>RegistrAPP</ion-title>
+    <!-- Ícono de cerrar sesión en la parte superior -->
+    <ion-buttons slot="end">
+      <ion-icon name="log-out" (click)="confirmLogout()" style="cursor: pointer;"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content-wrapper">
+    <h2>Bienvenido {{ username }} ({{ role }})</h2>
+    <ion-button *ngIf="role === 'profesor'" (click)="generarCodigoQR()">Generar Código QR</ion-button>
+    <ion-button *ngIf="role === 'alumno'" (click)="tomarFoto()">Escanear Código QR</ion-button>
+
+    <div class="qr-code-wrapper" *ngIf="qrCodeImage">
+      <img [src]="qrCodeImage" alt="Código QR">
+    </div>
+    <div *ngIf="image">
+      <img [src]="image" />
+    </div>
+
+    <div class="api-data" *ngIf="apiData">
+      <h3>Alumnos Presentes:</h3>
+      <ul>
+        <li *ngFor="let user of apiData.results">
+          {{ user.name.first }} {{ user.name.last }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</ion-content>

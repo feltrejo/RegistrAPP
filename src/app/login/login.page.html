@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>RegistrAPP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-wrapper">
+    <img src="assets/img/gifff.gif" alt="Animación de Bienvenida" class="login-gif">
+    <h2 class="login-title">¡Bienvenido de Nuevo!</h2>
+    <form (ngSubmit)="login()">
+      <ion-item>
+        <ion-label position="floating">Nombre de Usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="username" name="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [type]="passwordType" [(ngModel)]="password" name="password"></ion-input>
+        <ion-icon [name]="passwordIcon" slot="end" (click)="togglePassword()"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>Rol</ion-label>
+        <ion-select [(ngModel)]="role" name="role">
+          <ion-select-option value="profesor">Profesor</ion-select-option>
+          <ion-select-option value="alumno">Alumno</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="full" type="submit">Ingresar</ion-button>
+    </form>
+    <ion-button expand="full" routerLink="/reset-password" class="reset-password-button">Restablecer Contraseña</ion-button>
+  </div>
+</ion-content>
