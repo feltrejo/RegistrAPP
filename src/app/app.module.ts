@@ -15,7 +15,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
+  imports: [BrowserModule, IonicModule.forRoot({rippleEffect: false, mode: 'md'}), AppRoutingModule, FormsModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideHttpClient(), QrCodeService,
     ApiService, // Asegúrate de que esté aquí correctamente
